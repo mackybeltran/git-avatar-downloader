@@ -1,4 +1,5 @@
 var request = require('request');
+var fs = require('fs');
 var GITHUB_USER = 'mackybeltran'
 var GITHUB_TOKEN = '8a9997eb1f27395b4a83591908df938dbce044ae'
 
@@ -18,7 +19,7 @@ function getRepoContributors(repoOwner, repoName, cb) {
         output.push(userData[i]['avatar_url'])
 
 
-      // console.log(userData[0]['avatar_url'])
+
     } console.log(output)
     console.log(userData[0]['avatar_url'])
 
@@ -27,10 +28,17 @@ function getRepoContributors(repoOwner, repoName, cb) {
 
 }
 
+function downloadImageByURL(url, filePath) {
+  request.get(url)
+  .pipe(fs.createWriteStream(filePath));
+
+}
+
 getRepoContributors("jquery", "jquery", function(err, result) {
   console.log("Errors:", err);
   console.log("Result:", result);
 });
 
+downloadImageByURL("https://avatars2.githubusercontent.com/u/2741?v=3&s=466", "avatars/kvirani.jpg")
 
 
