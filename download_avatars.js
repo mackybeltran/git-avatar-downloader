@@ -13,19 +13,24 @@ function getRepoContributors(repoOwner, repoName, cb) {
   }
   request(options, function (error, response, body) {
     var userData = JSON.parse(body)
+    var output = []
+      for (var i = 0; i < userData.length; i++) {
+        output.push(userData[i]['avatar_url'])
 
-    console.log(userData)
-    // console.log(JSON.stringify(JSON.parse(body), null, 2))
+
+      // console.log(userData[0]['avatar_url'])
+    } console.log(output)
+    console.log(userData[0]['avatar_url'])
+
   })
-    // .on('response', function (response) {
-      // console.log('body follows:', response.headers)
 
-    // })
-  console.log(requestURL)
+
 }
 
 getRepoContributors("jquery", "jquery", function(err, result) {
   console.log("Errors:", err);
   console.log("Result:", result);
 });
+
+
 
