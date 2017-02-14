@@ -5,18 +5,20 @@ var GITHUB_TOKEN = '8a9997eb1f27395b4a83591908df938dbce044ae'
 var ownerRepo = process.argv.slice(2,3)[0]
 var nameRepo = process.argv.slice(3, 4)[0]
 
+console.log('Welcome to the GitHub Avatar Downloader!');
+
 //error message if 2 args not input
-function error(message) {
+function userError(message) {
   this.message = message;
-  console.log(message;)
+  console.log(message);
 }
 
 if (!ownerRepo || !nameRepo) {
-    throw new error ("please provide  data: <owner> <repository>");
+    console.log(userError("please provide  data: <owner> <repository>"));
 }
 
 
-console.log('Welcome to the GitHub Avatar Downloader!');
+
 
 function getRepoContributors(repoOwner, repoName, cb) {
   var requestURL = 'https://'+ GITHUB_USER + ':' + GITHUB_TOKEN +'@api.github.com/repos/' + repoOwner + '/' + repoName + '/contributors';
