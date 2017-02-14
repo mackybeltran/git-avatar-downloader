@@ -14,19 +14,16 @@ function getRepoContributors(repoOwner, repoName, cb) {
   }
   request(options, function (error, response, body) {
     var userData = JSON.parse(body)
-    var output = []
-      for (var i = 0; i < userData.length; i++) {
-        output.push(userData[i]['avatar_url'])
+    if (!error && response.statusCode === 200) {
+      cb(error, body);
+    } else {
+      return "ERROR!"
+    }
+    })
+  }
 
 
 
-    } console.log(output)
-    console.log(userData[0]['avatar_url'])
-
-  })
-
-
-}
 
 function downloadImageByURL(url, filePath) {
   request.get(url)
@@ -35,10 +32,12 @@ function downloadImageByURL(url, filePath) {
 }
 
 getRepoContributors("jquery", "jquery", function(err, result) {
-  console.log("Errors:", err);
-  console.log("Result:", result);
+  var data = JSON.parse(result)
+  data.forEach(function(user) {
+    downloadImageByURL(user['avatar_url'], "./avatars/" + user['login'] + ".jpg");
+  });
 });
 
-downloadImageByURL("https://avatars2.githubusercontent.com/u/2741?v=3&s=466", "avatars/kvirani.jpg")
+
 
 
