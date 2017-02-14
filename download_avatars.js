@@ -43,12 +43,12 @@ function downloadImageByURL(url, filePath) {
 
 }
 
-// getRepoContributors("jquery", "jquery", function(err, result) {
-//   var data = JSON.parse(result)
-//   data.forEach(function(user) {
-//     downloadImageByURL(user['avatar_url'], "./avatars/" + user['login'] + ".jpg");
-//   });
-// });
+getRepoContributors(OwnerRepo, nameRepo, function(err, result) {
+  var data = JSON.parse(result)
+  data.forEach(function(user) {
+    downloadImageByURL(user['avatar_url'], "./avatars/" + user['login'] + ".jpg");
+  });
+});
 
 
 
