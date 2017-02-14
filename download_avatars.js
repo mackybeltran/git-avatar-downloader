@@ -2,6 +2,8 @@ var request = require('request');
 var fs = require('fs');
 var GITHUB_USER = 'mackybeltran'
 var GITHUB_TOKEN = '8a9997eb1f27395b4a83591908df938dbce044ae'
+var OwnerRepo = process.argv.slice(2,3)[0]
+var nameRepo = process.argv.slice(3, 4)[0]
 
 
 console.log('Welcome to the GitHub Avatar Downloader!');
