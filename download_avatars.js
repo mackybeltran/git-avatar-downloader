@@ -5,6 +5,16 @@ var GITHUB_TOKEN = '8a9997eb1f27395b4a83591908df938dbce044ae'
 var OwnerRepo = process.argv.slice(2,3)[0]
 var nameRepo = process.argv.slice(3, 4)[0]
 
+//error message if 2 args not input
+function error(message) {
+  this.message = message;
+  console.log(message;)
+}
+
+if (!OwnerRepo || !nameRepo) {
+    throw new error ("please provide  data: <owner> <repository>");
+}
+
 
 console.log('Welcome to the GitHub Avatar Downloader!');
 
@@ -33,12 +43,12 @@ function downloadImageByURL(url, filePath) {
 
 }
 
-getRepoContributors("jquery", "jquery", function(err, result) {
-  var data = JSON.parse(result)
-  data.forEach(function(user) {
-    downloadImageByURL(user['avatar_url'], "./avatars/" + user['login'] + ".jpg");
-  });
-});
+// getRepoContributors("jquery", "jquery", function(err, result) {
+//   var data = JSON.parse(result)
+//   data.forEach(function(user) {
+//     downloadImageByURL(user['avatar_url'], "./avatars/" + user['login'] + ".jpg");
+//   });
+// });
 
 
 
