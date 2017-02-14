@@ -2,7 +2,7 @@ var request = require('request');
 var fs = require('fs');
 var GITHUB_USER = 'mackybeltran'
 var GITHUB_TOKEN = '8a9997eb1f27395b4a83591908df938dbce044ae'
-var OwnerRepo = process.argv.slice(2,3)[0]
+var ownerRepo = process.argv.slice(2,3)[0]
 var nameRepo = process.argv.slice(3, 4)[0]
 
 //error message if 2 args not input
@@ -11,7 +11,7 @@ function error(message) {
   console.log(message;)
 }
 
-if (!OwnerRepo || !nameRepo) {
+if (!ownerRepo || !nameRepo) {
     throw new error ("please provide  data: <owner> <repository>");
 }
 
@@ -43,7 +43,7 @@ function downloadImageByURL(url, filePath) {
 
 }
 
-getRepoContributors(OwnerRepo, nameRepo, function(err, result) {
+getRepoContributors(ownerRepo, nameRepo, function(err, result) {
   var data = JSON.parse(result)
   data.forEach(function(user) {
     downloadImageByURL(user['avatar_url'], "./avatars/" + user['login'] + ".jpg");
